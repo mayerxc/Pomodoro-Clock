@@ -6,9 +6,9 @@ var breakMinStr, breakSecStr
 var isPaused = true;
 var pomo = "work";
 var alarm = new Audio('http://res.cloudinary.com/mayerxc/video/upload/v1473729116/Cuckoo-clock-sound_of6pmy.mp3');
-min = 1;
+min = 25;
 sec = 0;
-breakMin = 2;
+breakMin = 5;
 breakSec = 0;
 initMin = 1;
 initBreakMin = 2;
@@ -23,7 +23,7 @@ function loadPage() {
 
 function timer() {
 
-    myTimer = setInterval(runTimer, 100)
+    myTimer = setInterval(runTimer, 1000)
 }
 
 function runTimer() {
