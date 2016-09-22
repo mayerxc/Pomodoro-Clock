@@ -6,12 +6,12 @@ var breakMinStr, breakSecStr
 var isPaused = true;
 var pomo = "work";
 var alarm = new Audio('http://res.cloudinary.com/mayerxc/video/upload/v1473729116/Cuckoo-clock-sound_of6pmy.mp3');
-min = 25;
+min = 1;
 sec = 0;
-breakMin = 5;
+breakMin = 2;
 breakSec = 0;
-initMin = 25;
-initBreakMin= 5;
+initMin = 1;
+initBreakMin = 2;
 
 
 
@@ -23,7 +23,7 @@ function loadPage() {
 
 function timer() {
 
-    myTimer = setInterval(runTimer, 1000)
+    myTimer = setInterval(runTimer, 100)
 }
 
 function runTimer() {
@@ -33,71 +33,99 @@ function runTimer() {
                 if (min === 0) {
                     alarm.play();
                     pomo = "break"
+                    sec = 1
+
+                } else {
+                    min -= 1;
+                    sec = 59;
                 }
-                min -= 1;
-                sec = 60;
             }
-            sec -= 1;
+
             $(".pomodoro p").html(("0" + min).slice(-2) + ":" + ("0" + sec).slice(-2));
-            if (pomo==="break"){
-                min= initMin
+            sec -= 1;
+            if (pomo === "break") {
+                min = initMin;
+                sec = 0; // setting seconds again so it doesn't go negative
             }
-        }
-        if (pomo === "break") {
+        } else { //if (pomo === "break") {
             if (breakSec === 0) {
                 if (breakMin === 0) {
                     alarm.play();
                     pomo = "work"
+                } else {
+                    breakMin -= 1;
+                    breakSec = 59;
                 }
-                breakMin -= 1;
-                breakSec = 60;
             }
-            breakSec -= 1;
+
             $(".pomodoro p").html(("0" + breakMin).slice(-2) + ":" + ("0" + breakSec).slice(-2));
+            breakSec -= 1;
             if (pomo === "work") {
                 breakMin = initBreakMin;
+                breakSec = 0; //setting the seconds back to 0 so it doesn't go negative
             }
         }
     }
 }
 
 function addToTimer() {
-    min += 1;
-    initMin = min;
-    $(".pomodoro p").html(("0" + min).slice(-2) + ":" + ("0" + sec).slice(-2));
-    $(".timer").html(("0" + min).slice(-2) + ":" + ("0" + sec).slice(-2));
-
+    if (isPaused) {
+        min += 1;
+        initMin = min;
+        sec = 0;
+        if (pomo === "work") {
+            $(".pomodoro p").html(("0" + min).slice(-2) + ":" + ("0" + sec).slice(-2));
+        }
+        $(".timer").html(("0" + min).slice(-2) + ":" + ("0" + sec).slice(-2));
+    }
 }
 
 function minusTimer() {
-    min -= 1;
-    if (min <= 0) {
-        min = 1;
+    if (isPaused) {
+        min -= 1;
+        if (min <= 0) {
+            min = 1;
+        }
+        initMin = min;
+        sec = 0;
+        if (pomo === "work") {
+            $(".pomodoro p").html(("0" + min).slice(-2) + ":" + ("0" + sec).slice(-2));
+        }
+        $(".timer").html(("0" + min).slice(-2) + ":" + ("0" + sec).slice(-2));
     }
-    initMin = min;
-    $(".pomodoro p").html(("0" + min).slice(-2) + ":" + ("0" + sec).slice(-2));
-    $(".timer").html(("0" + min).slice(-2) + ":" + ("0" + sec).slice(-2));
 }
 
 function addToBreakTimer() {
-    breakMin += 1;
-    initBreakMin = breakMin
-        //$(".pomodoro p").html(("0" + min).slice(-2) + ":" + ("0" + sec).slice(-2));
-    $(".break").html(("0" + breakMin).slice(-2) + ":" + ("0" + breakSec).slice(-2));
+    if (isPaused) {
+        breakMin += 1;
+        initBreakMin = breakMin
+        breakSec = 0
+        if (pomo === "break") {
+            $(".pomodoro p").html(("0" + breakMin).slice(-2) + ":" + ("0" + breakSec).slice(-2));
+        }
+        $(".break").html(("0" + breakMin).slice(-2) + ":" + ("0" + breakSec).slice(-2));
+    }
 }
 
 function minusBreakTimer() {
-    breakMin -= 1;
-    if (breakMin <= 0) {
-        breakMin = 1;
+    if (isPaused) {
+        breakMin -= 1;
+        if (breakMin <= 0) {
+            breakMin = 1;
+        }
+        breakSec = 0;
+        initBreakMin = breakMin
+        if (pomo === "break"){
+            $(".pomodoro p").html(("0" + breakMin).slice(-2) + ":" + ("0" + breakSec).slice(-2));
+        }
+        $(".break").html(("0" + breakMin).slice(-2) + ":" + ("0" + breakSec).slice(-2));
     }
-    initBreakMin = breakMin
-    $(".break").html(("0" + breakMin).slice(-2) + ":" + ("0" + breakSec).slice(-2));
 }
 
 
 $(document).ready(function () {
     //enter functions here
+    
     $(".pomodoro p").html(("0" + min).slice(-2) + ":" + ("0" + sec).slice(-2));
     loadPage();
 

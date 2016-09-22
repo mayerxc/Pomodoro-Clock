@@ -1,7 +1,6 @@
 .jumbotron {
     text-align: center;
     margin-top: 15px;
-    
 }
 
 .pomodoro {
@@ -9,7 +8,7 @@
     width: 150px;
     border: 2px solid black;
     margin: auto;
-    border-radius: 30%;
+    border-radius: 50%;
     position: relative;
 }
 
@@ -19,7 +18,4 @@
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-}
-.timer{
-    
 }
