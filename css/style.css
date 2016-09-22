@@ -3,19 +3,60 @@
     margin-top: 15px;
 }
 
+.insidePomo {
+    position: absolute;
+    height: 75px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
 .pomodoro {
-    height: 150px;
-    width: 150px;
+    height: 250px;
+    width: 250px;
     border: 2px solid black;
     margin: auto;
     border-radius: 50%;
     position: relative;
+    
 }
 
-.pomodoro p {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
+.type {
+    height: 35px;
+    width: 240px;
+    margin: auto;
+    font-size: 200%;
+}
+
+.clock {
+    position: relative;
+    padding-top: 5px;
+    font-size: 200%;
+}
+
+
+button {
+    height: 40px;
+    width: 40px;
+}
+
+.jumbotron {
+  
+}
+
+body{
+    font-family: "Ubuntu";
+}
+
+.timer, .break, .timerTypes{
+    font-size: 200%; 
+}
+h2 {
+    font-size: 450%
+}
+
+footer {
+    text-align: center;
 }

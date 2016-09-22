@@ -27,6 +27,15 @@ function timer() {
 }
 
 function runTimer() {
+    if (pomo === "work" && !isPaused) {
+        $(".type").html("Work Time left")
+    } else if (pomo === "break" && !isPaused) {
+        $(".type").html("Break time left")
+    } else if (isPaused) {
+        $(".type").html("Paused")
+    }
+
+
     if (!isPaused) {
         if (pomo === "work") {
             if (sec === 0) {
@@ -41,7 +50,7 @@ function runTimer() {
                 }
             }
 
-            $(".pomodoro p").html(("0" + min).slice(-2) + ":" + ("0" + sec).slice(-2));
+            $(".clock").html(("0" + min).slice(-2) + ":" + ("0" + sec).slice(-2));
             sec -= 1;
             if (pomo === "break") {
                 min = initMin;
@@ -58,7 +67,7 @@ function runTimer() {
                 }
             }
 
-            $(".pomodoro p").html(("0" + breakMin).slice(-2) + ":" + ("0" + breakSec).slice(-2));
+            $(".clock").html(("0" + breakMin).slice(-2) + ":" + ("0" + breakSec).slice(-2));
             breakSec -= 1;
             if (pomo === "work") {
                 breakMin = initBreakMin;
@@ -74,7 +83,7 @@ function addToTimer() {
         initMin = min;
         sec = 0;
         if (pomo === "work") {
-            $(".pomodoro p").html(("0" + min).slice(-2) + ":" + ("0" + sec).slice(-2));
+            $(".clock").html(("0" + min).slice(-2) + ":" + ("0" + sec).slice(-2));
         }
         $(".timer").html(("0" + min).slice(-2) + ":" + ("0" + sec).slice(-2));
     }
@@ -89,7 +98,7 @@ function minusTimer() {
         initMin = min;
         sec = 0;
         if (pomo === "work") {
-            $(".pomodoro p").html(("0" + min).slice(-2) + ":" + ("0" + sec).slice(-2));
+            $(".clock").html(("0" + min).slice(-2) + ":" + ("0" + sec).slice(-2));
         }
         $(".timer").html(("0" + min).slice(-2) + ":" + ("0" + sec).slice(-2));
     }
@@ -101,7 +110,7 @@ function addToBreakTimer() {
         initBreakMin = breakMin
         breakSec = 0
         if (pomo === "break") {
-            $(".pomodoro p").html(("0" + breakMin).slice(-2) + ":" + ("0" + breakSec).slice(-2));
+            $(".clock").html(("0" + breakMin).slice(-2) + ":" + ("0" + breakSec).slice(-2));
         }
         $(".break").html(("0" + breakMin).slice(-2) + ":" + ("0" + breakSec).slice(-2));
     }
@@ -115,8 +124,8 @@ function minusBreakTimer() {
         }
         breakSec = 0;
         initBreakMin = breakMin
-        if (pomo === "break"){
-            $(".pomodoro p").html(("0" + breakMin).slice(-2) + ":" + ("0" + breakSec).slice(-2));
+        if (pomo === "break") {
+            $(".clock").html(("0" + breakMin).slice(-2) + ":" + ("0" + breakSec).slice(-2));
         }
         $(".break").html(("0" + breakMin).slice(-2) + ":" + ("0" + breakSec).slice(-2));
     }
@@ -125,8 +134,8 @@ function minusBreakTimer() {
 
 $(document).ready(function () {
     //enter functions here
-    
-    $(".pomodoro p").html(("0" + min).slice(-2) + ":" + ("0" + sec).slice(-2));
+
+    $(".clock").html(("0" + min).slice(-2) + ":" + ("0" + sec).slice(-2));
     loadPage();
 
     $(".pomodoro").click(function () {
@@ -137,6 +146,7 @@ $(document).ready(function () {
             isPaused = true;
 
         }
+
         //clearInterval(myTimer) so it doesn't count down too fast everytime I click the div
         clearInterval(myTimer);
         timer();

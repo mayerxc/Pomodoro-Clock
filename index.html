@@ -10,7 +10,7 @@
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
 
     <link rel="stylesheet" href="css/style.css">
-
+<link href="https://fonts.googleapis.com/css?family=Merienda|Roboto|Ubuntu" rel="stylesheet">
 
 
 
@@ -20,41 +20,46 @@
 
     <div class="container">
         <div class="jumbotron">
-            <h2>Free Code Camp</h2>
             <h2>Pomodoro Clock</h2>
+            
             <div class="pomodoro">
+                <div class="insidePomo">
+                    <div class="type">Start</div>
+                    <div class="clock"></div>
+                </div>
 
-
-                <p class="clock"></p>
+                
 
 
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-xs-6">Work
+                    <div class="col-xs-6 timerTypes">Work
                     </div>
-                    <div class="col-xs-6">Break
+                    <div class="col-xs-6 timerTypes">Break
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
 
-                        <button class="plus glyphicon glyphicon-arrow-up"> </button>
+                        <button class="plus glyphicon glyphicon-arrow-up btn btn-secondary"> </button>
 
                         <span class="timer"></span>
-                        <button class="minus glyphicon glyphicon-arrow-down"> </button>
+                        <button class="minus glyphicon glyphicon-arrow-down btn btn-secondary"> </button>
 
                     </div>
                     <div class="col-xs-6">
-                        <button class="break-plus glyphicon glyphicon-arrow-up"> </button>
+                        <button class="break-plus glyphicon glyphicon-arrow-up btn btn-secondary"> </button>
                         <span class="break"></span>
-                        <button class="break-minus glyphicon glyphicon-arrow-down"> </button>
+                        <button class="break-minus glyphicon glyphicon-arrow-down btn btn-secondary"> </button>
                     </div>
                 </div>
 
             </div>
 
         </div>
+        <footer>Coded by <a src="http://chrismayer.me">Chris Mayer</a>
+        </footer>
 
     </div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
